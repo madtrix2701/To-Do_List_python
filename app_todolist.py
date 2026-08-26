@@ -25,7 +25,7 @@ st.write("lu pelupa? buat To-Do list lu disini biar keseharian lu mudah")
 
 #1. inisialisasi session_rate agar data tidak hilang saat tombol diklik
 if "daftar_tugas" not in st.session_state:
-    st.session_state.daftar_tugas = muat_data[]
+    st.session_state.daftar_tugas = muat_data()
 
 #2. form untuk menambah tugas baru
 st.subheader("Tambah Tugas Baru")
