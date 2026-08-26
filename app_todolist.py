@@ -1,4 +1,22 @@
 import streamlit as st
+import json
+import os 
+
+# nama file tempat menyimpan data
+FILE_DATA = "todo_data.json" 
+
+# fungsi untuk membaca dan menyimpan data
+def muat_data():
+    """membaca data dari file json jika file ada"""
+    if os.path.exists(FILE_DATA):
+        with open(FILE_DATA, "r") as file:
+            return json.load(file)
+    return[]
+
+def simpan_data():
+    """Meyimpan data ke dalam file JSON"""
+    with open(FILE_DATA, "w") as file:
+        json.dump(data, file, indent=4)
 
 st.set_page_config(page_title="To-Do List App", page_icon="📝")
 
@@ -7,7 +25,7 @@ st.write("lu pelupa? buat To-Do list lu disini biar keseharian lu mudah")
 
 #1. inisialisasi session_rate agar data tidak hilang saat tombol diklik
 if "daftar_tugas" not in st.session_state:
-    st.session_state.daftar_tugas = []
+    st.session_state.daftar_tugas = muat_data[]
 
 #2. form untuk menambah tugas baru
 st.subheader("Tambah Tugas Baru")
@@ -18,6 +36,7 @@ with st.form(key="form_tugas", clear_on_submit=True):
 if tombol_tambah:
     if tugas_baru.strip() != "":
         st.session_state.daftar_tugas.append(tugas_baru)
+        simpan_data(st.session_state.daftar_tugas)
         st.success(f"Berhasil Menambahkan: **{tugas_baru}**")
         st.rerun()
     else:
@@ -41,6 +60,7 @@ else:
             #tombol hapus untuk masing-masing tugas
             if st.button("Hapus", key=f"hapus_{index}"):
                 st.session_state.daftar_tugas.pop(index)
+                simpan_data(st.session_state.daftar_tugas)
                 st.rerun()
 
 #4. tombol khusus: hapus semua tugas
@@ -48,5 +68,5 @@ if st.session_state.daftar_tugas:
     st.divider()
     if st.button("🗑️ Hapus Semua Tugas"):
         st.session_state.daftar_tugas.clear()
-        st.rerun() 
-    
+        simpan_data(st.session_state.daftar_tugas)
+        st.rerun()
