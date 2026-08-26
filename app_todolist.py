@@ -13,9 +13,9 @@ def muat_data():
             return json.load(file)
     return[]
 
-def simpan_data():
+def simpan_data(data):
     """Meyimpan data ke dalam file JSON"""
-    with open(FILE_DATA, "w") as file:
+    with open(FILE_DATA.json, "w") as file:
         json.dump(data, file, indent=4)
 
 st.set_page_config(page_title="To-Do List App", page_icon="📝")
