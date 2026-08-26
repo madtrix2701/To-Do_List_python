@@ -20,7 +20,7 @@ def simpan_data(data):
 st.set_page_config(page_title="To-Do List App", page_icon="📝")
 
 st.title("📝 Aplikasi To-Do List")
-st.write("Kelola daftar tugas harian Anda.")
+st.write("lo pelupa? atur to-do list lo disini biar keseharian lo lebih mudah.")
 
 if "daftar_tugas" not in st.session_state:
     st.session_state.daftar_tugas = muat_data()
@@ -44,7 +44,7 @@ st.divider()
 st.subheader("Daftar Tugas Anda")
 
 if not st.session_state.daftar_tugas:
-    st.info("Belum ada tugas. Nikmati waktu luangmu! 🎉")
+    st.info("Belum ada tugas. nganggur yak hahaha")
 else:
     for index, tugas in enumerate(st.session_state.daftar_tugas):
         col1, col2 = st.columns([4, 1])
